@@ -6,6 +6,142 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+    body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 97.75vh; /* Thay đổi giá trị height */
+    font-family: 'Raleway', 'Times New Roman', sans-serif; /* Sử dụng phông chữ Raleway */
+    background: #101c28;
+    color: white;
+}
+
+h1 {
+    margin-bottom: 100px;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    gap: 0; /* Không có khoảng cách giữa các ô */
+    align-items: center;
+    justify-content: center;
+}
+
+.cell {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5em;
+    background-color: #101c28;
+    border: 7px solid #6a7886; /* Đường viền giữa các ô */
+    cursor: pointer;
+    position: relative;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none; /* Bỏ đường viền trên cùng */
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+    border-bottom: none; /* Bỏ đường viền dưới cùng */
+}
+
+.cell:nth-child(1),
+.cell:nth-child(4),
+.cell:nth-child(7) {
+    border-left: none; /* Bỏ đường viền bên trái */
+}
+
+.cell:nth-child(3),
+.cell:nth-child(6),
+.cell:nth-child(9) {
+    border-right: none; /* Bỏ đường viền bên phải */
+}
+
+#score-board {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.score-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 75%; /* Đảm bảo đủ rộng để chứa nội dung */
+    margin: 10px 0;
+    font-size: 0.9em;
+    white-space: nowrap; /* Không cho phép xuống dòng */
+    overflow: visible; /* Hiển thị toàn bộ mà không bị cắt */
+    margin-left: 50px;
+}
+
+.score-values {
+    display: flex;
+    justify-content: space-around;
+    width: 300px;
+    margin: 10px 0;
+    font-size: 2em;
+    margin-left: 55px;
+}
+
+.score-header span, .score-values span {
+    width: 120px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/* CSS cho hiệu ứng xuất hiện */
+@keyframes appear {
+    0% { transform: scale(0.05); }
+    100% { transform: scale(1); }
+}
+
+.cell img {
+    display: none;
+    width: 70%;
+    height: 70%;
+    position: absolute;
+}
+
+.cell.show img {
+    display: block;
+    animation: appear 0.3s ease-in-out;
+}
+
+/* CSS cho hiệu ứng nhảy số */
+@keyframes jump {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
+
+.animated {
+    animation: jump 0.75s ease;
+}
+
+@media (max-aspect-ratio: 9/16) {
+    #game-board {
+        grid-template-columns: repeat(3, 120px);
+        grid-template-rows: repeat(3, 120px);
+    }
+
+    .cell {
+        width: 120px;
+        height: 120px;
+        font-size: 3.5em;
+    }
+}
+</style>
 </head>
 <body>
     <div id="game-board">
